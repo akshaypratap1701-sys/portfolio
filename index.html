@@ -3,20 +3,22 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Akshay Pratap Singh — Supply Chain to Product</title>
+<title>Akshay Pratap Singh — Supply Chain Analytics Consultant</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#0B0E14;
-  --panel:#11151F;
-  --panel-2:#151A26;
-  --text:#E9E7DE;
-  --muted:#8A93A6;
-  --amber:#F5A623;
-  --teal:#34C3A6;
-  --line:#232838;
-  --danger:#E8604C;
+  --bg:#F5F6F3;
+  --panel:#FFFFFF;
+  --panel-2:#EEF0EB;
+  --text:#1E2430;
+  --muted:#67707C;
+  --primary:#2E5C86;
+  --primary-soft:rgba(46,92,134,.08);
+  --gold:#A9772E;
+  --gold-soft:rgba(169,119,46,.08);
+  --teal:#2E8368;
+  --line:#E1E3DC;
   --display:'Space Grotesk',sans-serif;
   --body:'IBM Plex Sans',sans-serif;
   --mono:'IBM Plex Mono',monospace;
@@ -25,10 +27,10 @@
 html{scroll-behavior:smooth;}
 body{
   margin:0;background:var(--bg);color:var(--text);
-  font-family:var(--body);line-height:1.6;
+  font-family:var(--body);line-height:1.65;
   -webkit-font-smoothing:antialiased;
 }
-a{color:var(--amber);text-decoration:none;}
+a{color:var(--primary);text-decoration:none;}
 a:hover{text-decoration:underline;}
 .wrap{max-width:1040px;margin:0 auto;padding:0 28px;}
 .eyebrow{
@@ -36,234 +38,265 @@ a:hover{text-decoration:underline;}
   color:var(--teal);text-transform:uppercase;
 }
 h1,h2,h3{font-family:var(--display);margin:0;font-weight:600;}
-section{padding:96px 0;border-bottom:1px solid var(--line);scroll-margin-top:64px;}
+section{padding:88px 0;border-bottom:1px solid var(--line);scroll-margin-top:70px;}
 section:last-of-type{border-bottom:none;}
 
-/* progress bar */
 .progress-bar{position:fixed;top:0;left:0;height:3px;width:0%;z-index:210;
-  background:linear-gradient(90deg,var(--amber),var(--teal));transition:width .08s linear;}
+  background:linear-gradient(90deg,var(--primary),var(--gold));transition:width .08s linear;}
 
 /* nav */
 .topnav{
   position:fixed;top:0;left:0;right:0;z-index:200;
-  background:rgba(11,14,20,.72);backdrop-filter:blur(10px);
+  background:rgba(245,246,243,.85);backdrop-filter:blur(10px);
   border-bottom:1px solid var(--line);
 }
 .topnav .wrap{max-width:1040px;display:flex;align-items:center;justify-content:space-between;height:60px;padding:0 28px;}
 .brand{font-family:var(--mono);font-size:13px;color:var(--text);display:flex;align-items:center;gap:8px;}
-.brand .live-dot{margin-right:0;}
-.nav-links{display:flex;gap:26px;font-family:var(--mono);font-size:12.5px;}
-.nav-links a{color:var(--muted);letter-spacing:.02em;position:relative;padding:4px 0;}
-.nav-links a:hover{color:var(--text);text-decoration:none;}
-.nav-links a.active{color:var(--amber);}
-.nav-links a.active::after{content:'';position:absolute;left:0;right:0;bottom:-2px;height:1px;background:var(--amber);}
+.nav-links{display:flex;gap:24px;font-family:var(--mono);font-size:12.5px;align-items:center;}
+.nav-links a, .nav-links button{color:var(--muted);letter-spacing:.02em;position:relative;padding:4px 0;
+  background:none;border:none;font-family:var(--mono);font-size:12.5px;cursor:pointer;}
+.nav-links a:hover, .nav-links button:hover{color:var(--text);text-decoration:none;}
+.nav-links a.active{color:var(--primary);}
+.nav-links a.active::after{content:'';position:absolute;left:0;right:0;bottom:-2px;height:1px;background:var(--primary);}
 .nav-toggle{display:none;background:none;border:1px solid var(--line);border-radius:6px;color:var(--text);width:36px;height:36px;font-size:16px;cursor:pointer;}
-@media (max-width:760px){
+@media (max-width:780px){
   .nav-links{position:fixed;top:60px;left:0;right:0;background:var(--bg);border-bottom:1px solid var(--line);
-    flex-direction:column;gap:0;max-height:0;overflow:hidden;transition:max-height .25s ease;}
-  .nav-links.open{max-height:340px;}
-  .nav-links a{padding:14px 28px;border-bottom:1px solid var(--line);}
+    flex-direction:column;align-items:flex-start;gap:0;max-height:0;overflow:hidden;transition:max-height .25s ease;}
+  .nav-links.open{max-height:400px;}
+  .nav-links a, .nav-links button{padding:14px 28px;border-bottom:1px solid var(--line);width:100%;text-align:left;}
   .nav-links a.active::after{display:none;}
   .nav-toggle{display:block;}
 }
 
-/* live dot */
 .live-dot{
   display:inline-block;width:7px;height:7px;border-radius:50%;
   background:var(--teal);margin-right:8px;
-  box-shadow:0 0 0 0 rgba(52,195,166,.6);
-  animation:pulse 2s infinite;
+  box-shadow:0 0 0 0 rgba(46,131,104,.5);
+  animation:pulse 2.4s infinite;
 }
 @keyframes pulse{
-  0%{box-shadow:0 0 0 0 rgba(52,195,166,.5);}
-  70%{box-shadow:0 0 0 8px rgba(52,195,166,0);}
-  100%{box-shadow:0 0 0 0 rgba(52,195,166,0);}
+  0%{box-shadow:0 0 0 0 rgba(46,131,104,.4);}
+  70%{box-shadow:0 0 0 7px rgba(46,131,104,0);}
+  100%{box-shadow:0 0 0 0 rgba(46,131,104,0);}
 }
 @media (prefers-reduced-motion: reduce){
   .live-dot{animation:none;}
   *{scroll-behavior:auto !important;transition:none !important;animation:none !important;}
 }
 
-/* reveal-on-scroll */
-.reveal{opacity:0;transform:translateY(18px);transition:opacity .6s ease, transform .6s ease;}
+.reveal{opacity:0;transform:translateY(16px);transition:opacity .55s ease, transform .55s ease;}
 .reveal.in{opacity:1;transform:translateY(0);}
 
 /* HERO */
-.hero{padding:150px 0 80px;position:relative;overflow:hidden;}
+.hero{padding:150px 0 76px;position:relative;overflow:hidden;}
 .hero::before{
   content:'';position:absolute;inset:0;
-  background-image:radial-gradient(circle,rgba(138,147,166,.16) 1px,transparent 1px);
-  background-size:26px 26px;mask-image:radial-gradient(ellipse 70% 60% at 30% 20%,black 0%,transparent 75%);
+  background-image:radial-gradient(circle,rgba(30,36,48,.06) 1px,transparent 1px);
+  background-size:26px 26px;mask-image:radial-gradient(ellipse 70% 60% at 25% 15%,black 0%,transparent 75%);
   pointer-events:none;
 }
 .hero::after{
-  content:'';position:absolute;top:-160px;right:-160px;width:520px;height:520px;border-radius:50%;
-  background:radial-gradient(circle,rgba(245,166,35,.14),transparent 70%);pointer-events:none;
+  content:'';position:absolute;top:-180px;right:-160px;width:520px;height:520px;border-radius:50%;
+  background:radial-gradient(circle,rgba(169,119,46,.12),transparent 70%);pointer-events:none;
 }
-.hero-manifest{
-  font-family:var(--mono);font-size:12px;color:var(--muted);
-  display:flex;gap:24px;flex-wrap:wrap;margin-bottom:28px;position:relative;
+.badge-row{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:24px;position:relative;}
+.id-badge{
+  font-family:var(--mono);font-size:12px;color:var(--text);background:var(--panel);
+  border:1px solid var(--line);padding:7px 14px;border-radius:20px;display:inline-flex;align-items:center;gap:6px;
 }
-.hero-manifest span b{color:var(--text);font-weight:500;}
 .hero h1{
-  font-size:clamp(40px,7vw,76px);line-height:1.02;letter-spacing:-.01em;
-  margin:8px 0 6px;position:relative;
+  font-size:clamp(38px,6.6vw,72px);line-height:1.03;letter-spacing:-.01em;
+  margin:6px 0 8px;position:relative;
 }
 .hero .role{
-  font-family:var(--mono);color:var(--amber);font-size:16px;
-  margin-bottom:28px;letter-spacing:.02em;position:relative;
+  font-family:var(--mono);color:var(--primary);font-size:15.5px;
+  margin-bottom:22px;letter-spacing:.01em;position:relative;
 }
-.hero p{position:relative;}
+.hero p.sub{position:relative;max-width:600px;color:var(--muted);font-size:15.5px;}
 .route-card{
   margin-top:36px;background:var(--panel);border:1px solid var(--line);
-  border-radius:10px;padding:26px 28px;position:relative;
-  box-shadow:0 20px 50px -20px rgba(0,0,0,.5);
+  border-radius:10px;padding:24px 28px;position:relative;
+  box-shadow:0 16px 40px -24px rgba(30,36,48,.18);
 }
-.route-track{
-  display:flex;align-items:center;gap:0;margin:18px 0 8px;flex-wrap:wrap;
-}
-.route-node{
-  display:flex;flex-direction:column;align-items:center;gap:8px;min-width:110px;
-}
-.route-node .dot{width:10px;height:10px;border-radius:50%;background:var(--muted);border:2px solid var(--muted);transition:transform .3s;}
-.route-node.active .dot{background:var(--amber);border-color:var(--amber);}
+.route-group{margin-top:16px;}
+.route-group:first-of-type{margin-top:14px;}
+.route-group-label{font-family:var(--mono);font-size:10.5px;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;margin-bottom:10px;}
+.route-track{display:flex;align-items:center;gap:0;flex-wrap:wrap;}
+.route-node{display:flex;flex-direction:column;align-items:center;gap:7px;min-width:100px;}
+.route-node .dot{width:10px;height:10px;border-radius:50%;transition:transform .25s;}
+.route-group.exp .dot{background:var(--primary);}
+.route-group.edu .dot{background:var(--gold);}
 .route-node:hover .dot{transform:scale(1.3);}
-.route-node .label{font-family:var(--mono);font-size:11px;color:var(--muted);text-align:center;}
-.route-node.active .label{color:var(--text);}
-.route-line{flex:1;height:1px;background:repeating-linear-gradient(90deg,var(--line) 0 6px,transparent 6px 12px);min-width:24px;}
-.hero-links{display:flex;gap:18px;margin-top:22px;font-family:var(--mono);font-size:13px;position:relative;}
-.hero-links a{border:1px solid var(--line);padding:9px 16px;border-radius:20px;color:var(--text);transition:border-color .2s, color .2s;}
-.hero-links a:hover{border-color:var(--amber);color:var(--amber);text-decoration:none;}
-.scroll-cue{
-  position:absolute;bottom:-40px;left:0;font-family:var(--mono);font-size:11px;color:var(--muted);
-  display:flex;align-items:center;gap:8px;
-}
-.scroll-cue .line{width:1px;height:22px;background:var(--muted);animation:cue 1.8s infinite;}
-@keyframes cue{0%{transform:scaleY(0);opacity:0;}50%{transform:scaleY(1);opacity:1;}100%{transform:scaleY(0);opacity:0;transform-origin:top;}}
+.route-node .label{font-family:var(--mono);font-size:10.5px;color:var(--text);text-align:center;}
+.route-line{flex:1;height:1px;background:repeating-linear-gradient(90deg,var(--line) 0 6px,transparent 6px 12px);min-width:20px;}
+.route-group.exp .route-line{background:repeating-linear-gradient(90deg,rgba(46,92,134,.35) 0 6px,transparent 6px 12px);}
+.route-group.edu .route-line{background:repeating-linear-gradient(90deg,rgba(169,119,46,.35) 0 6px,transparent 6px 12px);}
+.hero-links{display:flex;gap:14px;margin-top:24px;font-family:var(--mono);font-size:13px;position:relative;flex-wrap:wrap;}
+.hero-links a{border:1px solid var(--line);padding:9px 16px;border-radius:20px;color:var(--text);background:var(--panel);transition:border-color .2s, color .2s;}
+.hero-links a:hover{border-color:var(--primary);color:var(--primary);text-decoration:none;}
 
-/* section headers */
-.sec-head{display:flex;align-items:baseline;gap:16px;margin-bottom:48px;}
-.sec-head h2{font-size:clamp(26px,4vw,36px);}
-.sec-num{font-family:var(--mono);color:var(--amber);font-size:13px;}
+.sec-head{display:flex;align-items:baseline;gap:14px;margin-bottom:40px;}
+.sec-head h2{font-size:clamp(24px,3.6vw,34px);}
+.sec-num{font-family:var(--mono);color:var(--gold);font-size:13px;}
+.sec-sub{color:var(--muted);margin-top:-24px;margin-bottom:36px;max-width:640px;font-size:15px;}
+
+/* EDUCATION — featured, sits early */
+.edu-feature{display:grid;grid-template-columns:1.1fr 1fr;gap:22px;}
+.edu-card{
+  background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:30px;
+  transition:transform .25s ease, box-shadow .25s ease;
+}
+.edu-card:hover{transform:translateY(-3px);box-shadow:0 20px 40px -28px rgba(30,36,48,.22);}
+.edu-card.primary{border-top:3px solid var(--gold);}
+.edu-card.secondary{border-top:3px solid var(--primary);}
+.edu-card .school{font-family:var(--mono);font-size:12.5px;color:var(--muted);letter-spacing:.03em;}
+.edu-card h3{font-size:23px;margin:8px 0 6px;}
+.edu-card .meta{color:var(--muted);font-size:13.5px;}
+.edu-card .grad-chip{
+  display:inline-block;margin-top:14px;font-family:var(--mono);font-size:11.5px;color:var(--gold);
+  background:var(--gold-soft);border:1px solid rgba(169,119,46,.3);padding:5px 12px;border-radius:20px;
+}
+.edu-card.secondary .grad-chip{color:var(--primary);background:var(--primary-soft);border-color:rgba(46,92,134,.3);}
 
 /* EXPERIENCE TIMELINE */
-.timeline{position:relative;padding-left:26px;}
+.timeline{position:relative;padding-left:28px;}
 .timeline::before{content:'';position:absolute;left:0;top:0;bottom:0;width:1px;background:var(--line);}
-.timeline::after{content:'';position:absolute;left:0;top:0;width:1px;background:linear-gradient(180deg,var(--amber),var(--teal));height:var(--fill,0%);transition:height .1s linear;}
-.stop{position:relative;margin-bottom:56px;}
+.timeline::after{content:'';position:absolute;left:0;top:0;width:1px;background:linear-gradient(180deg,var(--primary),var(--gold));height:var(--fill,0%);transition:height .1s linear;}
+.stop{position:relative;margin-bottom:52px;}
 .stop:last-child{margin-bottom:0;}
 .stop::before{
-  content:'';position:absolute;left:-31px;top:4px;width:10px;height:10px;
-  border-radius:50%;background:var(--bg);border:2px solid var(--amber);z-index:2;
+  content:'';position:absolute;left:-33px;top:4px;width:11px;height:11px;
+  border-radius:50%;background:var(--bg);border:2px solid var(--org-color,var(--primary));z-index:2;
 }
-.stop-tag{font-family:var(--mono);font-size:11px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;}
-.stop h3{font-size:20px;margin-top:6px;}
-.stop .org{color:var(--teal);font-family:var(--mono);font-size:13px;margin-top:2px;}
+.org-header{display:flex;align-items:center;gap:12px;flex-wrap:wrap;}
+.org-badge{
+  width:34px;height:34px;border-radius:8px;display:flex;align-items:center;justify-content:center;
+  font-family:var(--mono);font-size:12px;font-weight:600;color:#fff;flex-shrink:0;
+}
+.stop-tag{font-family:var(--mono);font-size:11px;color:var(--muted);letter-spacing:.06em;text-transform:uppercase;}
+.engagement-tag{
+  font-family:var(--mono);font-size:10.5px;padding:3px 10px;border-radius:20px;
+  background:var(--org-tint,var(--primary-soft));color:var(--org-color,var(--primary));border:1px solid var(--org-color,var(--primary));border-opacity:.3;
+}
+.stop h3{font-size:19px;margin-top:10px;}
+.stop .org{color:var(--org-color,var(--primary));font-family:var(--mono);font-size:13px;margin-top:2px;font-weight:500;}
 .stop .dates{color:var(--muted);font-family:var(--mono);font-size:12px;margin-top:2px;}
 .stop ul{margin:16px 0 0;padding-left:18px;color:var(--text);}
-.stop li{margin-bottom:9px;font-size:15px;}
-.kpi-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px;}
+.stop li{margin-bottom:9px;font-size:14.5px;}
+.kpi-row{display:flex;gap:9px;flex-wrap:wrap;margin-top:14px;}
 .kpi{
-  font-family:var(--mono);font-size:11px;color:var(--amber);
-  border:1px solid rgba(245,166,35,.35);background:rgba(245,166,35,.06);
-  padding:5px 10px;border-radius:20px;transition:background .2s;
+  font-family:var(--mono);font-size:11px;color:var(--org-color,var(--primary));
+  border:1px solid var(--org-color,var(--primary));background:var(--org-tint,var(--primary-soft));
+  padding:5px 10px;border-radius:20px;opacity:.9;transition:opacity .2s;
 }
-.kpi:hover{background:rgba(245,166,35,.16);}
-.client-block{margin-top:22px;padding-top:18px;border-top:1px dashed var(--line);}
-.client-block:first-child{margin-top:18px;padding-top:0;border-top:none;}
-.client-block h4{font-family:var(--body);font-weight:600;font-size:16px;color:var(--text);margin-bottom:2px;}
+.kpi:hover{opacity:1;}
+.client-block{margin-top:20px;padding-top:16px;border-top:1px dashed var(--line);}
+.client-block:first-child{margin-top:16px;padding-top:0;border-top:none;}
+.client-block h4{font-family:var(--body);font-weight:600;font-size:15.5px;color:var(--text);margin-bottom:2px;}
 
-/* PROJECT CARDS */
-.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:22px;}
+/* PROJECT CARD */
 .card{
-  background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:26px;
+  background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:28px;
   transition:transform .25s ease, border-color .25s ease, box-shadow .25s ease;
 }
-.card:hover{transform:translateY(-4px);border-color:rgba(245,166,35,.4);box-shadow:0 20px 40px -24px rgba(0,0,0,.6);}
+.card:hover{transform:translateY(-4px);border-color:rgba(169,119,46,.4);box-shadow:0 20px 40px -28px rgba(30,36,48,.2);}
 .card .badge{
-  font-family:var(--mono);font-size:10px;color:var(--teal);border:1px solid rgba(52,195,166,.4);
-  padding:3px 9px;border-radius:20px;display:inline-block;margin-bottom:14px;
+  font-family:var(--mono);font-size:10.5px;color:var(--teal);border:1px solid rgba(46,131,104,.4);
+  padding:3px 10px;border-radius:20px;display:inline-block;margin-bottom:14px;
 }
-.card h3{font-size:19px;margin-bottom:8px;}
-.card p{color:var(--muted);font-size:14px;margin:0 0 14px;}
+.card h3{font-size:20px;margin-bottom:10px;}
+.card p{color:var(--muted);font-size:14.5px;margin:0 0 14px;}
 .tags{display:flex;gap:8px;flex-wrap:wrap;}
 .tag{font-family:var(--mono);font-size:11px;color:var(--muted);background:var(--panel-2);padding:4px 9px;border-radius:5px;}
+.demo-link{
+  display:inline-flex;align-items:center;gap:8px;margin-top:18px;font-family:var(--mono);font-size:13px;
+  padding:10px 16px;border-radius:20px;border:1px solid var(--primary);color:var(--primary);
+}
+.demo-link:hover{background:var(--primary-soft);text-decoration:none;}
 
-/* ACHIEVEMENTS - stub cards */
-.stub-row{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+/* BEYOND & ACHIEVEMENTS */
+.beyond-sub-label{font-family:var(--mono);font-size:11.5px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;margin-bottom:16px;}
+.stub-row{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:44px;}
 .stub{
-  background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:20px;
+  background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:18px;
   position:relative;transition:transform .25s ease, border-color .25s ease;
 }
-.stub:hover{transform:translateY(-3px);border-color:rgba(52,195,166,.4);}
-.stub::after{
-  content:'';position:absolute;top:0;bottom:0;left:52px;border-left:1px dashed var(--line);
-}
-.stub .amt{font-family:var(--mono);color:var(--amber);font-size:22px;font-weight:500;display:block;margin-bottom:6px;}
+.stub:hover{transform:translateY(-3px);border-color:rgba(46,131,104,.35);}
+.stub .amt{font-family:var(--mono);color:var(--gold);font-size:20px;font-weight:500;display:block;margin-bottom:6px;}
 .stub .desc{font-size:13.5px;color:var(--text);}
-.stub .sub{font-family:var(--mono);font-size:11px;color:var(--muted);margin-top:6px;display:block;}
-
-/* POSTS */
-.posts-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
-.post-card{
-  background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:22px;
-  display:flex;flex-direction:column;transition:border-color .25s ease, transform .25s ease;
-}
-.post-card:hover{border-color:rgba(245,166,35,.35);transform:translateY(-3px);}
-.post-card .ptag{font-family:var(--mono);font-size:11px;color:var(--muted);margin-bottom:10px;}
-.post-card p{font-size:14px;color:var(--text);flex:1;margin:0 0 14px;}
-.post-card p.pending{color:var(--muted);font-style:italic;}
-.post-card .plink{font-family:var(--mono);font-size:12px;}
-.embed-note{
-  font-family:var(--mono);font-size:12px;color:var(--muted);
-  border:1px dashed var(--line);padding:14px 16px;border-radius:8px;margin-bottom:28px;
-}
-.embed-card{padding:0;overflow:hidden;}
-.embed-card .ptag{padding:16px 18px 0;}
-.embed-frame{width:100%;overflow:hidden;padding:14px 0 0;position:relative;min-height:80px;background:var(--panel-2);}
-.embed-frame iframe{width:100%;max-width:100%;display:block;border:0;position:relative;z-index:1;}
-.embed-skel{position:absolute;inset:14px 18px 0;font-family:var(--mono);font-size:11px;color:var(--muted);
-  display:flex;align-items:center;gap:8px;padding-top:6px;}
-.embed-frame.loaded .embed-skel{display:none;}
-.embed-fallback{padding:0 18px 16px;font-family:var(--mono);font-size:11px;}
-.embed-fallback a{color:var(--muted);}
-.embed-fallback a:hover{color:var(--amber);}
-
-/* EXTRACURRICULAR */
 .pill-row{display:flex;flex-wrap:wrap;gap:14px;}
 .pill{
   border:1px solid var(--line);border-radius:8px;padding:16px 20px;flex:1;min-width:220px;
   background:var(--panel);transition:transform .25s ease, border-color .25s ease;
 }
-.pill:hover{transform:translateY(-3px);border-color:rgba(138,147,166,.4);}
+.pill:hover{transform:translateY(-3px);border-color:rgba(46,92,134,.35);}
 .pill h4{font-size:15px;margin:0 0 6px;font-family:var(--body);font-weight:600;}
 .pill p{margin:0;font-size:13px;color:var(--muted);}
 
-/* EDUCATION */
-.edu-row{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;}
-.edu-item{flex:1;min-width:260px;}
-.edu-item .school{font-family:var(--mono);color:var(--teal);font-size:13px;}
-.edu-item h3{font-size:20px;margin:6px 0 4px;}
-.edu-item .meta{color:var(--muted);font-size:13px;}
-
-footer{padding:64px 0 48px;text-align:center;}
+footer{padding:60px 0 44px;text-align:center;}
 footer .foot-links{font-family:var(--mono);font-size:13px;margin-top:10px;}
-footer p{color:var(--muted);font-size:13px;margin-top:18px;}
+footer p{color:var(--muted);font-size:13px;margin-top:16px;}
 
 .to-top{
   position:fixed;bottom:26px;right:26px;width:42px;height:42px;border-radius:50%;
   background:var(--panel);border:1px solid var(--line);color:var(--text);
   display:flex;align-items:center;justify-content:center;cursor:pointer;
   opacity:0;pointer-events:none;transition:opacity .25s, border-color .25s;z-index:150;
+  box-shadow:0 8px 20px -10px rgba(30,36,48,.2);
 }
 .to-top.show{opacity:1;pointer-events:auto;}
-.to-top:hover{border-color:var(--amber);color:var(--amber);}
+.to-top:hover{border-color:var(--primary);color:var(--primary);}
 
-@media (max-width:720px){
-  .grid-2, .stub-row, .posts-grid{grid-template-columns:1fr;}
-  .stub::after{display:none;}
-  section{padding:64px 0;}
+/* MODAL — Business Insights */
+.modal-overlay{
+  position:fixed;inset:0;background:rgba(20,24,30,.55);z-index:300;
+  display:none;align-items:flex-start;justify-content:center;padding:56px 20px;overflow-y:auto;
+}
+.modal-overlay.open{display:flex;}
+.modal-panel{
+  background:var(--panel);border-radius:14px;max-width:900px;width:100%;
+  box-shadow:0 40px 80px -30px rgba(0,0,0,.4);
+}
+.modal-head{
+  display:flex;align-items:center;justify-content:space-between;padding:22px 26px;
+  border-bottom:1px solid var(--line);position:sticky;top:0;background:var(--panel);border-radius:14px 14px 0 0;
+}
+.modal-head h3{font-size:20px;}
+.modal-head p{margin:4px 0 0;color:var(--muted);font-size:13px;}
+.modal-close{
+  border:1px solid var(--line);background:var(--panel-2);border-radius:50%;width:34px;height:34px;
+  cursor:pointer;font-size:16px;color:var(--text);flex-shrink:0;
+}
+.modal-close:hover{border-color:var(--primary);color:var(--primary);}
+.modal-body{padding:24px 26px 30px;}
+.embed-note{
+  font-family:var(--mono);font-size:12px;color:var(--muted);
+  border:1px dashed var(--line);padding:12px 16px;border-radius:8px;margin-bottom:22px;
+}
+.posts-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.post-card{
+  background:var(--panel);border:1px solid var(--line);border-radius:10px;
+  display:flex;flex-direction:column;overflow:hidden;transition:border-color .25s ease;
+}
+.post-card:hover{border-color:rgba(169,119,46,.35);}
+.post-card .ptag{font-family:var(--mono);font-size:11px;color:var(--muted);padding:14px 16px 0;}
+.post-card p{font-size:13.5px;color:var(--text);flex:1;margin:8px 16px 14px;}
+.embed-frame{width:100%;overflow:hidden;padding-top:12px;position:relative;min-height:60px;}
+.embed-frame iframe{width:100%;max-width:100%;display:block;border:0;position:relative;z-index:1;}
+.embed-skel{position:absolute;top:12px;left:16px;right:16px;font-family:var(--mono);font-size:11px;color:var(--muted);
+  display:flex;align-items:center;gap:8px;}
+.embed-frame.loaded .embed-skel{display:none;}
+.embed-fallback{padding:8px 16px 14px;font-family:var(--mono);font-size:11px;}
+.embed-fallback a{color:var(--muted);}
+.embed-fallback a:hover{color:var(--primary);}
+
+@media (max-width:760px){
+  .edu-feature, .posts-grid, .stub-row{grid-template-columns:1fr;}
+  section{padding:60px 0;}
   .hero{padding:120px 0 56px;}
+  .modal-overlay{padding:0;}
+  .modal-panel{border-radius:0;min-height:100vh;}
+  .modal-head{border-radius:0;}
 }
 </style>
 </head>
@@ -274,12 +307,12 @@ footer p{color:var(--muted);font-size:13px;margin-top:18px;}
   <div class="wrap">
     <div class="brand"><span class="live-dot"></span>AKSHAY PRATAP SINGH</div>
     <div class="nav-links" id="navLinks">
+      <a href="#education">Education</a>
       <a href="#experience">Experience</a>
       <a href="#projects">Product</a>
-      <a href="#achievements">Achievements</a>
-      <a href="#posts">Writing</a>
       <a href="#beyond">Beyond</a>
-      <a href="#education">Education</a>
+      <button id="openInsights">Business Insights ↗</button>
+      <a href="#contact">Contact</a>
     </div>
     <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">☰</button>
   </div>
@@ -287,68 +320,101 @@ footer p{color:var(--muted);font-size:13px;margin-top:18px;}
 
 <section class="hero">
   <div class="wrap">
-    <div class="hero-manifest">
-      <span>MANIFEST&nbsp;NO: <b>AS-0007</b></span>
-      <span>ORIGIN: <b>Mechanical Engineering</b></span>
-      <span>ROUTE: <b>Supply Chain Analytics</b></span>
-      <span>STATUS: <span class="live-dot"></span><b>In transit → Product</b></span>
+    <div class="badge-row">
+      <span class="id-badge">💼 5.5+ yrs · Supply Chain Analytics</span>
+      <span class="id-badge">🎓 PGP Co'27, ISB Mohali · Graduating March 2027</span>
     </div>
     <h1>Akshay Pratap<br>Singh</h1>
-    <div class="role">Supply chain analytics consultant, building toward product management</div>
-    <p style="max-width:560px;color:var(--muted);font-size:15.5px;">
-      Four years of building command centers, control towers, and cost-optimization models for global supply chains at P&amp;G, Estée Lauder, and Constellation Brands. Now at ISB Mohali, and building AI products for Indian retail on the side.
-    </p>
+    <div class="role">Analytics Consultant — Supply Chain &amp; Data Products</div>
+    <p class="sub">5.5+ years delivering data-heavy analytics solutions and enterprise data products across global supply chains — control towers, cost-optimization models, and executive dashboards for P&amp;G, Estée Lauder, and Constellation Brands. Currently pursuing my PGP at ISB Mohali.</p>
     <div class="route-card">
-      <div class="eyebrow">Career routing</div>
-      <div class="route-track">
-        <div class="route-node active"><div class="dot"></div><div class="label">Thapar<br>Mech. Engg.</div></div>
-        <div class="route-line"></div>
-        <div class="route-node active"><div class="dot"></div><div class="label">VE Commercial<br>Vehicles</div></div>
-        <div class="route-line"></div>
-        <div class="route-node active"><div class="dot"></div><div class="label">Fractal<br>Analytics</div></div>
-        <div class="route-line"></div>
-        <div class="route-node active"><div class="dot"></div><div class="label">A&amp;M<br>GCC</div></div>
-        <div class="route-line"></div>
-        <div class="route-node active"><div class="dot"></div><div class="label">ISB Mohali<br>PGP Co'27</div></div>
+      <div class="eyebrow">Career &amp; Education Timeline</div>
+      <div class="route-group exp">
+        <div class="route-group-label">Experience</div>
+        <div class="route-track">
+          <div class="route-node"><div class="dot"></div><div class="label">VE Commercial<br>Vehicles</div></div>
+          <div class="route-line"></div>
+          <div class="route-node"><div class="dot"></div><div class="label">Fractal<br>Analytics</div></div>
+          <div class="route-line"></div>
+          <div class="route-node"><div class="dot"></div><div class="label">A&amp;M<br>GCC</div></div>
+        </div>
+      </div>
+      <div class="route-group edu">
+        <div class="route-group-label">Education</div>
+        <div class="route-track">
+          <div class="route-node"><div class="dot"></div><div class="label">Thapar Institute<br>B.E. Mechanical</div></div>
+          <div class="route-line"></div>
+          <div class="route-node"><div class="dot"></div><div class="label">ISB Mohali<br>PGP Co'27</div></div>
+        </div>
       </div>
     </div>
     <div class="hero-links">
       <a href="mailto:Akshaypratap1701@gmail.com">✉ Akshaypratap1701@gmail.com</a>
       <a href="https://www.linkedin.com/in/akshay-pratap-singh-0007/" target="_blank">↗ LinkedIn</a>
     </div>
-    <div class="scroll-cue"><div class="line"></div>SCROLL</div>
+  </div>
+</section>
+
+<section id="education">
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-num">01</span><h2>Education</h2></div>
+    <div class="edu-feature">
+      <div class="edu-card primary reveal">
+        <div class="school">Indian School of Business, Mohali</div>
+        <h3>PGP · Co'27</h3>
+        <div class="meta">Post Graduate Programme in Management — currently in progress</div>
+        <span class="grad-chip">🎓 Graduating March 2027</span>
+      </div>
+      <div class="edu-card secondary reveal">
+        <div class="school">Thapar Institute of Engineering &amp; Technology, Patiala</div>
+        <h3>B.E., Mechanical Engineering</h3>
+        <div class="meta">CGPA 9.01 / 10 · Top 10% ranker</div>
+        <span class="grad-chip">₹1.70 Lac merit scholarship</span>
+      </div>
+    </div>
   </div>
 </section>
 
 <section id="experience">
   <div class="wrap">
-    <div class="sec-head"><span class="sec-num">01</span><h2>Experience</h2></div>
-    <p style="color:var(--muted);margin-top:-28px;margin-bottom:36px;max-width:620px;">Four years owning analytics products end-to-end — discovery workshops, requirements, roadmap, a build team, and a shipped V1 in front of real stakeholders.</p>
+    <div class="sec-head"><span class="sec-num">02</span><h2>Experience</h2></div>
+    <p class="sec-sub">5.5+ years across three very different environments — a heavy-vehicle manufacturer, a global analytics consultancy, and a lean GCC engagement — each demanding a different way of shipping analytics.</p>
     <div class="timeline">
 
-      <div class="stop reveal">
-        <div class="stop-tag">Current</div>
-        <h3>Product Owner — Lead-Time Intelligence Solution</h3>
+      <div class="stop reveal" style="--org-color:#A9772E;--org-tint:rgba(169,119,46,.08);">
+        <div class="org-header">
+          <div class="org-badge" style="background:#A9772E;">A&amp;M</div>
+          <div>
+            <div class="stop-tag">Feb 2026 – Mar 2026</div>
+          </div>
+          <span class="engagement-tag">Short-term GCC engagement</span>
+        </div>
+        <h3>Supply Chain Analytics Consultant — Lead-Time Intelligence Solution</h3>
         <div class="org">A&amp;M GCC · Gurgaon, India</div>
-        <div class="dates">Feb 2026 – Mar 2026</div>
         <ul>
-          <li>Scoped and shipped a lead-time intelligence solution from a blank page — integrating supplier, manufacturing, and distribution data into a single feature: real-time visibility into material lead times against shelf-life constraints.</li>
-          <li>Defined the core use case around a $13M+ opportunity, sizing inventory at risk across SKUs, brands, plants, and suppliers wherever lead times exceeded effective shelf-life windows, then prioritized it into the build.</li>
-          <li>Specced an ANOVA-based statistical model as a decision-support feature, giving business teams a ranked, data-backed list of supplier and network interventions instead of a gut call.</li>
+          <li>Scoped and delivered a lead-time intelligence solution from a blank page in a compressed 2-month window — integrating supplier, manufacturing, and distribution data into real-time visibility on material lead times against shelf-life constraints.</li>
+          <li>Sized a $13M+ cost optimization opportunity by uncovering inventory at risk across SKUs, brands, plants, and suppliers wherever lead times exceeded effective shelf-life windows.</li>
+          <li>Built an ANOVA-based statistical model to quantify key drivers of lead-time variability, giving business teams a ranked, data-backed list of supplier and network interventions.</li>
         </ul>
-        <div class="kpi-row"><span class="kpi">$13M+ COST OPP.</span><span class="kpi">ANOVA MODEL</span></div>
+        <div class="kpi-row"><span class="kpi">$13M+ COST OPP.</span><span class="kpi">ANOVA MODEL</span><span class="kpi">2-MONTH DELIVERY</span></div>
       </div>
 
-      <div class="stop reveal">
-        <div class="stop-tag">Jun 2022 – Jan 2026</div>
-        <h3>Lead Consultant, acting as Product Owner across 4 analytics products</h3>
+      <div class="stop reveal" style="--org-color:#2E5C86;--org-tint:rgba(46,92,134,.08);">
+        <div class="org-header">
+          <div class="org-badge" style="background:#2E5C86;">FA</div>
+          <div>
+            <div class="stop-tag">Jun 2022 – Jan 2026</div>
+          </div>
+          <span class="engagement-tag">Full-time · 3.5+ years</span>
+        </div>
+        <h3>Lead Consultant — Data-Heavy Analytics Solutions across 4 Global Clients</h3>
         <div class="org">Fractal Analytics · Gurgaon, India</div>
 
         <div class="client-block">
           <h4>Procter &amp; Gamble (USA) — Transportation Data Product</h4>
           <ul>
             <li>Owned P&amp;G's Transportation Data Product end-to-end — ran 20+ discovery workshops with US and EU stakeholders to turn a vague ask into a scoped, unified analytics framework for transportation cost and volume management.</li>
-            <li>Led a build team of 3 developers against that roadmap, architecting scalable Databricks pipelines across 40+ datasets and 55M+ records into a single source of truth the whole transportation org could trust.</li>
+            <li>Led a build team of 3 developers against that roadmap, architecting scalable Databricks pipelines across 40+ datasets and 55M+ records into a single source of truth for transportation operations.</li>
             <li>Defined 20+ logistics KPIs as the product's core metrics (Volume Fill Rate, Weight Fill Rate, lane efficiency, spend, exceptions) and shipped executive Power BI views covering $2B+ annual transportation spend and 24B+ units transported.</li>
           </ul>
           <div class="kpi-row"><span class="kpi">$2B+ SPEND TRACKED</span><span class="kpi">55M+ RECORDS</span><span class="kpi">20+ KPIs</span></div>
@@ -357,9 +423,9 @@ footer p{color:var(--muted);font-size:13px;margin-top:18px;}
         <div class="client-block">
           <h4>Estée Lauder — Global Supply Chain Visibility &amp; Network Optimization</h4>
           <ul>
-            <li>Owned the product vision for a 5-year supply chain sufficiency and responsiveness framework, taking it from concept to a tool giving visibility into ~$16B of annual revenue demand streams and $5–10M in identified cost-avoidance potential.</li>
-            <li>Designed the underlying sufficiency/responsiveness models as reusable product logic across 1,000+ critical raw materials, surfacing multi-sourcing and regionalization opportunities that cut lead times by up to 20 days.</li>
-            <li>Directed the data architecture behind the product — scalable business logic and pipelines across 50+ enterprise datasets in Databricks using SQL.</li>
+            <li>Delivered visibility into ~$16B of annual revenue demand streams via a 5-year supply chain sufficiency and responsiveness framework, identifying bottlenecks and $5–10M annual cost-avoidance potential.</li>
+            <li>Designed sufficiency/responsiveness models as reusable analytics logic across 1,000+ critical raw materials, surfacing multi-sourcing and regionalization opportunities that cut lead times by up to 20 days.</li>
+            <li>Directed the underlying data architecture — scalable business logic and pipelines across 50+ enterprise datasets in Databricks using SQL.</li>
           </ul>
           <div class="kpi-row"><span class="kpi">$16B DEMAND VISIBILITY</span><span class="kpi">1,000+ SKUs MODELED</span></div>
         </div>
@@ -367,8 +433,8 @@ footer p{color:var(--muted);font-size:13px;margin-top:18px;}
         <div class="client-block">
           <h4>Constellation Brands (USA) — Manufacturing Analytics &amp; OEE Optimization</h4>
           <ul>
-            <li>Ran 5+ stakeholder workshops with a team of 3 analysts to turn a vague "we need better visibility" ask into a scoped OEE product, diagnosing the real process constraints on critical production-line equipment first.</li>
-            <li>Shipped an equipment-level OEE framework on 1M+ manufacturing records from MySQL as a 3-screen Power BI product, automating a previously manual monitoring process and surfacing bottlenecks worth up to 20% efficiency improvement.</li>
+            <li>Ran 5+ stakeholder workshops with a team of 3 analysts to turn a vague "we need better visibility" ask into a scoped OEE solution, diagnosing the real process constraints on critical production-line equipment first.</li>
+            <li>Shipped an equipment-level OEE framework on 1M+ manufacturing records from MySQL as a 3-screen Power BI solution, automating a previously manual monitoring process and surfacing bottlenecks worth up to 20% efficiency improvement.</li>
           </ul>
           <div class="kpi-row"><span class="kpi">1M+ MFG. RECORDS</span><span class="kpi">UP TO 20% OEE GAIN</span></div>
         </div>
@@ -376,15 +442,21 @@ footer p{color:var(--muted);font-size:13px;margin-top:18px;}
         <div class="client-block">
           <h4>Procter &amp; Gamble (USA) — Warehouse Command Center &amp; Control Tower</h4>
           <ul>
-            <li>Owned the product roadmap for a real-time Warehouse Command Center, integrating SAP, WMS, and TMS data into one unified view across inbound, outbound, yard, and warehouse processes.</li>
-            <li>Shipped exception-management dashboards as the product's core workflow, driving a ~8–10% cut in order cycle time and a 12–15% lift in throughput through better dock scheduling and staging visibility.</li>
+            <li>Owned the roadmap for a real-time Warehouse Command Center, integrating SAP, WMS, and TMS data into one unified view across inbound, outbound, yard, and warehouse processes.</li>
+            <li>Shipped exception-management dashboards driving a ~8–10% cut in order cycle time and a 12–15% lift in throughput through better dock scheduling and staging visibility.</li>
           </ul>
           <div class="kpi-row"><span class="kpi">-8–10% CYCLE TIME</span><span class="kpi">+12–15% THROUGHPUT</span></div>
         </div>
       </div>
 
-      <div class="stop reveal">
-        <div class="stop-tag">Oct 2020 – May 2022</div>
+      <div class="stop reveal" style="--org-color:#2E8368;--org-tint:rgba(46,131,104,.08);">
+        <div class="org-header">
+          <div class="org-badge" style="background:#2E8368;">VE</div>
+          <div>
+            <div class="stop-tag">Oct 2020 – May 2022</div>
+          </div>
+          <span class="engagement-tag">Full-time · 1.5+ years</span>
+        </div>
         <h3>Spare Parts Supply Chain Transformation &amp; Inventory Optimization</h3>
         <div class="org">VE Commercial Vehicles Ltd · Indore, India</div>
         <ul>
@@ -401,113 +473,37 @@ footer p{color:var(--muted);font-size:13px;margin-top:18px;}
 
 <section id="projects">
   <div class="wrap">
-    <div class="sec-head"><span class="sec-num">02</span><h2>Product build</h2></div>
-    <p style="color:var(--muted);margin-top:-28px;margin-bottom:36px;max-width:620px;">Outside client work — building an AI product for the corner of the retail economy that still runs on WhatsApp orders and handwritten ledgers.</p>
-    <div class="card reveal" style="max-width:640px;">
-      <span class="badge">Shipped · Demo</span>
+    <div class="sec-head"><span class="sec-num">03</span><h2>Product build</h2></div>
+    <p class="sec-sub">One product built outside consulting work — for a national AI hackathon at ISB.</p>
+    <div class="card reveal" style="max-width:660px;">
+      <span class="badge">Semifinalist · ISB National AI Hackathon</span>
       <h3>Kirana Lens</h3>
-      <p style="margin-bottom:18px;">An AI-powered inventory management app for small kirana stores, built end-to-end from problem discovery to demo: camera-based shelf scanning to count stock without a barcode gun, invoice OCR to digitize supplier bills in seconds, and a sales insights dashboard designed for shopkeepers who've never used software before.</p>
+      <p>An AI-powered inventory management app built for small kirana store owners who've never used software before: camera-based shelf scanning to count stock without a barcode gun, invoice OCR to digitize supplier bills in seconds, and a sales insights dashboard that turns raw stock data into decisions a shopkeeper can actually act on.</p>
       <div class="tags"><span class="tag">Computer Vision</span><span class="tag">Invoice OCR</span><span class="tag">Retail Analytics</span></div>
-      <p class="ptag" style="margin:18px 0 0;font-family:var(--mono);font-size:12px;color:var(--muted);">🎥 9-minute product demo — <a href="#" target="_blank">add video link here</a></p>
-    </div>
-  </div>
-</section>
-
-<section id="achievements">
-  <div class="wrap">
-    <div class="sec-head"><span class="sec-num">03</span><h2>Achievements</h2></div>
-    <div class="stub-row">
-      <div class="stub reveal"><span class="amt">₹1,00,000</span><span class="desc">Won Fractal's National AI Hackathon leading a team of 5 with an agentic procurement AI solution, beating 24 competing teams.</span></div>
-      <div class="stub reveal"><span class="amt">150+ copies</span><span class="desc">Published debut book "My Great Resignation" — 4.9/5 on Amazon, 6 badges including the '100 Author Club'.</span></div>
-      <div class="stub reveal"><span class="amt">5Mn+ views</span><span class="desc">Content creator on LinkedIn &amp; Quora with 13K+ followers, writing on supply chain, analytics, and everyday product observations.</span></div>
-      <div class="stub reveal"><span class="amt">TBEMF Award</span><span class="desc">VECV's highest forum award, for contribution to a 100Cr+ monthly revenue milestone. Also won consecutive Employee of the Month.</span></div>
-      <div class="stub reveal"><span class="amt">Top 1% mentor</span><span class="desc">30+ mentorship calls on Topmate around analytics and supply chain careers, rated 4.3/5.</span></div>
-      <div class="stub reveal"><span class="amt">₹1.70 Lac</span><span class="desc">Scholarship at Thapar for academic excellence (top 10% ranker), plus a speaking slot with DRDO scientists at ICOL, published via Springer Nature.</span></div>
-    </div>
-  </div>
-</section>
-
-<section id="posts">
-  <div class="wrap">
-    <div class="sec-head"><span class="sec-num">04</span><h2>From LinkedIn</h2></div>
-    <div class="embed-note">
-      ⚙ Live LinkedIn embeds — content, date, and reactions update automatically. One post ("EV delivery economics") doesn't have an embed yet; paste its iframe in when you grab it.
-    </div>
-    <div class="posts-grid">
-      <div class="post-card embed-card reveal">
-        <div class="ptag">On customer care design</div>
-        <div class="embed-frame"><iframe src="https://www.linkedin.com/embed/feed/update/urn:li:share:7477720877988741122" height="1089" width="504" frameborder="0" allowfullscreen title="Reaching out to customer care post"></iframe></div>
-      <div class="embed-fallback"><a href="https://www.linkedin.com/feed/update/urn:li:share:7477720877988741122" target="_blank">Trouble loading? View this post on LinkedIn ↗</a></div>
-      </div>
-      <div class="post-card embed-card reveal">
-        <div class="ptag">On trust as a feature</div>
-        <div class="embed-frame"><iframe src="https://www.linkedin.com/embed/feed/update/urn:li:share:7477346742959595520" height="642" width="504" frameborder="0" allowfullscreen title="Pronto vs Urban Company post"></iframe></div>
-      <div class="embed-fallback"><a href="https://www.linkedin.com/feed/update/urn:li:share:7477346742959595520" target="_blank">Trouble loading? View this post on LinkedIn ↗</a></div>
-      </div>
-      <div class="post-card embed-card reveal">
-        <div class="ptag">On India's address problem</div>
-        <div class="embed-frame"><iframe src="https://www.linkedin.com/embed/feed/update/urn:li:share:7476618181587951616" height="2099" width="504" frameborder="0" allowfullscreen title="Delhivery Maps addresses post"></iframe></div>
-      <div class="embed-fallback"><a href="https://www.linkedin.com/feed/update/urn:li:share:7476618181587951616" target="_blank">Trouble loading? View this post on LinkedIn ↗</a></div>
-      </div>
-      <div class="post-card embed-card reveal">
-        <div class="ptag">Blinkit's printout service</div>
-        <div class="embed-frame"><iframe src="https://www.linkedin.com/embed/feed/update/urn:li:share:7368994388909170689" height="998" width="504" frameborder="0" allowfullscreen title="Blinkit printout service post"></iframe></div>
-      <div class="embed-fallback"><a href="https://www.linkedin.com/feed/update/urn:li:share:7368994388909170689" target="_blank">Trouble loading? View this post on LinkedIn ↗</a></div>
-      </div>
-      <div class="post-card reveal">
-        <div class="ptag">On EV delivery economics</div>
-        <p>Noticing a "delivered via EV" note on a Zomato order and running a back-of-envelope guesstimate on how often that message shows up daily across Delhi NCR's ~3.6 lakh food orders — and what that implies at scale.</p>
-        <a class="plink" href="https://www.linkedin.com/posts/akshay-pratap-singh-0007_yesterday-while-tracking-my-zomato-order-activity-7476257635281838080-xBAo" target="_blank">View on LinkedIn ↗</a>
-      </div>
-      <div class="post-card embed-card reveal">
-        <div class="ptag">Coke vs. Pepsi in retail</div>
-        <div class="embed-frame"><iframe src="https://www.linkedin.com/embed/feed/update/urn:li:share:7309218869825478658" height="1558" width="504" frameborder="0" allowfullscreen title="Coke vs Pepsi retail post"></iframe></div>
-      <div class="embed-fallback"><a href="https://www.linkedin.com/feed/update/urn:li:share:7309218869825478658" target="_blank">Trouble loading? View this post on LinkedIn ↗</a></div>
-      </div>
-      <div class="post-card embed-card reveal">
-        <div class="ptag">Retail &amp; the cola wars</div>
-        <div class="embed-frame"><iframe src="https://www.linkedin.com/embed/feed/update/urn:li:share:7300602783496318976" height="1383" width="504" frameborder="0" allowfullscreen title="Retail cola wars post"></iframe></div>
-      <div class="embed-fallback"><a href="https://www.linkedin.com/feed/update/urn:li:share:7300602783496318976" target="_blank">Trouble loading? View this post on LinkedIn ↗</a></div>
-      </div>
-      <div class="post-card embed-card reveal">
-        <div class="ptag">Q-commerce vs. e-commerce</div>
-        <div class="embed-frame"><iframe src="https://www.linkedin.com/embed/feed/update/urn:li:share:7286756005659529216" height="1177" width="504" frameborder="0" allowfullscreen title="Q-commerce vs e-commerce post"></iframe></div>
-      <div class="embed-fallback"><a href="https://www.linkedin.com/feed/update/urn:li:share:7286756005659529216" target="_blank">Trouble loading? View this post on LinkedIn ↗</a></div>
-      </div>
-      <div class="post-card embed-card reveal">
-        <div class="ptag">Unilever &amp; direct-to-kirana</div>
-        <div class="embed-frame"><iframe src="https://www.linkedin.com/embed/feed/update/urn:li:share:7280564544698044418" height="957" width="504" frameborder="0" allowfullscreen title="Unilever direct-to-kirana post"></iframe></div>
-      <div class="embed-fallback"><a href="https://www.linkedin.com/feed/update/urn:li:share:7280564544698044418" target="_blank">Trouble loading? View this post on LinkedIn ↗</a></div>
-      </div>
+      <a class="demo-link" href="https://drive.google.com/file/d/1xBO_s0RCS9Sxvg8SDVHC9ZZIEKiIObEI/view?usp=sharing" target="_blank">🎥 Watch the 9-minute product demo →</a>
     </div>
   </div>
 </section>
 
 <section id="beyond">
   <div class="wrap">
-    <div class="sec-head"><span class="sec-num">05</span><h2>Beyond the day job</h2></div>
+    <div class="sec-head"><span class="sec-num">04</span><h2>Beyond work</h2></div>
+
+    <div class="beyond-sub-label">Recognitions</div>
+    <div class="stub-row">
+      <div class="stub reveal"><span class="amt">₹1,00,000</span><span class="desc">Won Fractal's National AI Hackathon leading a team of 5 with an agentic procurement AI solution, beating 24 competing teams.</span></div>
+      <div class="stub reveal"><span class="amt">150+ copies</span><span class="desc">Published debut book "My Great Resignation" — 4.9/5 on Amazon, 6 badges including the '100 Author Club'.</span></div>
+      <div class="stub reveal"><span class="amt">5Mn+ views</span><span class="desc">Content creator on LinkedIn &amp; Quora with 13K+ followers, writing on supply chain, analytics, and everyday product observations.</span></div>
+      <div class="stub reveal"><span class="amt">TBEMF Award</span><span class="desc">VECV's highest forum award, for contribution to a 100Cr+ monthly revenue milestone. Also won consecutive Employee of the Month.</span></div>
+      <div class="stub reveal"><span class="amt">Top 1% mentor</span><span class="desc">30+ mentorship calls on Topmate around analytics and supply chain careers, rated 4.3/5.</span></div>
+      <div class="stub reveal"><span class="amt">DRDO · ICOL</span><span class="desc">Spoke at ICOL Conference at IRDE, DRDO Dehradun as first author of a publication with Springer Nature Singapore.</span></div>
+    </div>
+
+    <div class="beyond-sub-label">Leadership &amp; Community</div>
     <div class="pill-row">
       <div class="pill reveal"><h4>Fractal Toastmasters — VP, Public Relations</h4><p>Led 50+ meeting campaigns, hosted 10+ sessions as Toastmaster of the Day, key contributor to 4 club awards including the Diamond Club Award.</p></div>
       <div class="pill reveal"><h4>Fractal Book Club — Co-founder</h4><p>Built a reading habit initiative from scratch — now 300+ members and 19,600+ cumulative pages read.</p></div>
       <div class="pill reveal"><h4>Pro bono mentoring</h4><p>Mentoring 30+ people on Topmate around analytics and supply chain careers since July 2023, at little to no cost, with 4.3/5 ratings and 10+ testimonials.</p></div>
-    </div>
-  </div>
-</section>
-
-<section id="education">
-  <div class="wrap">
-    <div class="sec-head"><span class="sec-num">06</span><h2>Education</h2></div>
-    <div class="edu-row">
-      <div class="edu-item reveal">
-        <div class="school">Indian School of Business, Mohali</div>
-        <h3>PGP, Co'27</h3>
-        <div class="meta">In progress</div>
-      </div>
-      <div class="edu-item reveal">
-        <div class="school">Thapar Institute of Engineering &amp; Technology, Patiala</div>
-        <h3>B.E., Mechanical Engineering</h3>
-        <div class="meta">CGPA 9.01 / 10 · Top 10% ranker, ₹1.70 Lac merit scholarship</div>
-      </div>
     </div>
   </div>
 </section>
@@ -519,14 +515,78 @@ footer p{color:var(--muted);font-size:13px;margin-top:18px;}
       <a href="mailto:Akshaypratap1701@gmail.com">Akshaypratap1701@gmail.com</a> &nbsp;·&nbsp;
       <a href="https://www.linkedin.com/in/akshay-pratap-singh-0007/" target="_blank">linkedin.com/in/akshay-pratap-singh-0007</a>
     </div>
-    <p>Built by Akshay — supply chains, analytics, and a growing list of AI products.</p>
+    <p>Analytics consultant, supply chain domain — currently at ISB Mohali.</p>
   </div>
 </footer>
 
 <button class="to-top" id="toTop" aria-label="Back to top">↑</button>
 
+<!-- BUSINESS INSIGHTS MODAL -->
+<div class="modal-overlay" id="insightsModal">
+  <div class="modal-panel">
+    <div class="modal-head">
+      <div>
+        <h3>Business Insights</h3>
+        <p>A few notes from LinkedIn — thinking through retail, consumer behavior, and supply chains in public.</p>
+      </div>
+      <button class="modal-close" id="closeInsights" aria-label="Close">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="embed-note">
+        ⚙ Live LinkedIn embeds — content, date, and reactions update automatically. If one doesn't render (some browsers block third-party embeds from local files), use the fallback link below it.
+      </div>
+      <div class="posts-grid">
+        <div class="post-card">
+          <div class="ptag">On customer care design</div>
+          <div class="embed-frame"><iframe src="https://www.linkedin.com/embed/feed/update/urn:li:share:7477720877988741122" height="1089" width="504" frameborder="0" allowfullscreen title="Reaching out to customer care post"></iframe></div>
+          <div class="embed-fallback"><a href="https://www.linkedin.com/feed/update/urn:li:share:7477720877988741122" target="_blank">View this post on LinkedIn ↗</a></div>
+        </div>
+        <div class="post-card">
+          <div class="ptag">On trust as a feature</div>
+          <div class="embed-frame"><iframe src="https://www.linkedin.com/embed/feed/update/urn:li:share:7477346742959595520" height="642" width="504" frameborder="0" allowfullscreen title="Pronto vs Urban Company post"></iframe></div>
+          <div class="embed-fallback"><a href="https://www.linkedin.com/feed/update/urn:li:share:7477346742959595520" target="_blank">View this post on LinkedIn ↗</a></div>
+        </div>
+        <div class="post-card">
+          <div class="ptag">On India's address problem</div>
+          <div class="embed-frame"><iframe src="https://www.linkedin.com/embed/feed/update/urn:li:share:7476618181587951616" height="2099" width="504" frameborder="0" allowfullscreen title="Delhivery Maps addresses post"></iframe></div>
+          <div class="embed-fallback"><a href="https://www.linkedin.com/feed/update/urn:li:share:7476618181587951616" target="_blank">View this post on LinkedIn ↗</a></div>
+        </div>
+        <div class="post-card">
+          <div class="ptag">Blinkit's printout service</div>
+          <div class="embed-frame"><iframe src="https://www.linkedin.com/embed/feed/update/urn:li:share:7368994388909170689" height="998" width="504" frameborder="0" allowfullscreen title="Blinkit printout service post"></iframe></div>
+          <div class="embed-fallback"><a href="https://www.linkedin.com/feed/update/urn:li:share:7368994388909170689" target="_blank">View this post on LinkedIn ↗</a></div>
+        </div>
+        <div class="post-card">
+          <div class="ptag">On EV delivery economics</div>
+          <p>Noticing a "delivered via EV" note on a Zomato order and running a back-of-envelope guesstimate on how often that message shows up daily across Delhi NCR's ~3.6 lakh food orders — and what that implies at scale.</p>
+          <div class="embed-fallback"><a href="https://www.linkedin.com/posts/akshay-pratap-singh-0007_yesterday-while-tracking-my-zomato-order-activity-7476257635281838080-xBAo" target="_blank">View this post on LinkedIn ↗</a></div>
+        </div>
+        <div class="post-card">
+          <div class="ptag">Coke vs. Pepsi in retail</div>
+          <div class="embed-frame"><iframe src="https://www.linkedin.com/embed/feed/update/urn:li:share:7309218869825478658" height="1558" width="504" frameborder="0" allowfullscreen title="Coke vs Pepsi retail post"></iframe></div>
+          <div class="embed-fallback"><a href="https://www.linkedin.com/feed/update/urn:li:share:7309218869825478658" target="_blank">View this post on LinkedIn ↗</a></div>
+        </div>
+        <div class="post-card">
+          <div class="ptag">Retail &amp; the cola wars</div>
+          <div class="embed-frame"><iframe src="https://www.linkedin.com/embed/feed/update/urn:li:share:7300602783496318976" height="1383" width="504" frameborder="0" allowfullscreen title="Retail cola wars post"></iframe></div>
+          <div class="embed-fallback"><a href="https://www.linkedin.com/feed/update/urn:li:share:7300602783496318976" target="_blank">View this post on LinkedIn ↗</a></div>
+        </div>
+        <div class="post-card">
+          <div class="ptag">Q-commerce vs. e-commerce</div>
+          <div class="embed-frame"><iframe src="https://www.linkedin.com/embed/feed/update/urn:li:share:7286756005659529216" height="1177" width="504" frameborder="0" allowfullscreen title="Q-commerce vs e-commerce post"></iframe></div>
+          <div class="embed-fallback"><a href="https://www.linkedin.com/feed/update/urn:li:share:7286756005659529216" target="_blank">View this post on LinkedIn ↗</a></div>
+        </div>
+        <div class="post-card">
+          <div class="ptag">Unilever &amp; direct-to-kirana</div>
+          <div class="embed-frame"><iframe src="https://www.linkedin.com/embed/feed/update/urn:li:share:7280564544698044418" height="957" width="504" frameborder="0" allowfullscreen title="Unilever direct-to-kirana post"></iframe></div>
+          <div class="embed-fallback"><a href="https://www.linkedin.com/feed/update/urn:li:share:7280564544698044418" target="_blank">View this post on LinkedIn ↗</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <script>
-// scroll progress bar
 const progressBar = document.getElementById('progressBar');
 const toTop = document.getElementById('toTop');
 function onScroll(){
@@ -539,13 +599,11 @@ function onScroll(){
 window.addEventListener('scroll', onScroll, {passive:true});
 toTop.addEventListener('click', () => window.scrollTo({top:0, behavior:'smooth'}));
 
-// mobile nav toggle
 const navToggle = document.getElementById('navToggle');
 const navLinks = document.getElementById('navLinks');
 navToggle.addEventListener('click', () => navLinks.classList.toggle('open'));
 navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
 
-// active nav link on scroll
 const sections = [...document.querySelectorAll('section[id]')];
 const navA = [...navLinks.querySelectorAll('a')];
 function updateActiveNav(){
@@ -558,14 +616,12 @@ function updateActiveNav(){
 }
 window.addEventListener('scroll', updateActiveNav, {passive:true});
 
-// reveal on scroll
 const revealEls = document.querySelectorAll('.reveal');
 const io = new IntersectionObserver((entries) => {
   entries.forEach(e => { if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
 }, {threshold:0.12});
 revealEls.forEach(el => io.observe(el));
 
-// timeline fill tied to scroll position of the experience section
 const timelineEl = document.querySelector('.timeline');
 function updateTimelineFill(){
   if (!timelineEl) return;
@@ -577,7 +633,6 @@ function updateTimelineFill(){
   timelineEl.style.setProperty('--fill', pct + '%');
 }
 
-// embed loading skeleton -> hide once iframe fires load
 document.querySelectorAll('.embed-frame').forEach(frame => {
   const skel = document.createElement('div');
   skel.className = 'embed-skel';
@@ -586,10 +641,20 @@ document.querySelectorAll('.embed-frame').forEach(frame => {
   const iframe = frame.querySelector('iframe');
   if (iframe){
     iframe.addEventListener('load', () => frame.classList.add('loaded'));
-    // fallback: reveal fallback link area sooner if load takes too long
     setTimeout(() => frame.classList.add('loaded'), 4000);
   }
 });
+
+// Business Insights modal
+const modal = document.getElementById('insightsModal');
+const openBtn = document.getElementById('openInsights');
+const closeBtn = document.getElementById('closeInsights');
+function openModal(){ modal.classList.add('open'); document.body.style.overflow = 'hidden'; }
+function closeModal(){ modal.classList.remove('open'); document.body.style.overflow = ''; }
+openBtn.addEventListener('click', () => { openModal(); navLinks.classList.remove('open'); });
+closeBtn.addEventListener('click', closeModal);
+modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
 
 onScroll();
 updateActiveNav();
