@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SmartMoney — Hidden Loss</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#F3FAF4;
+    --card:#FFFFFF;
+    --ink:#122A20;
+    --ink-soft:#3F5C4F;
+    --muted:#7C9385;
+    --green-deep:#173F2C;
+    --green-mid:#1E7A4C;
+    --green-bright:#2FA968;
+    --green-pale:#E6F5EA;
+    --green-line:#CDE9D6;
+    --pink-bg:#FCEBEA;
+    --pink-line:#F7D4D1;
+    --loss:#D5493B;
+    --gain:#1E7A4C;
+    --radius:18px;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--bg);
+    font-family:'Inter',sans-serif;
+    color:var(--ink);
+    display:flex;
+    justify-content:center;
+    min-height:100vh;
+  }
+  .phone{
+    width:100%;
+    max-width:430px;
+    background:var(--bg);
+    padding:0 0 90px;
+    position:relative;
+  }
+  .topbar{
+    display:flex;align-items:center;gap:10px;
+    padding:18px 20px 8px;
+  }
+  .logo{
+    width:34px;height:34px;border-radius:50%;
+    background:linear-gradient(135deg,var(--green-mid),var(--green-deep));
+    display:flex;align-items:center;justify-content:center;
+    color:#fff;font-weight:800;font-family:'Poppins',sans-serif;font-size:15px;
+    flex-shrink:0;
+  }
+  .brand{font-family:'Poppins',sans-serif;font-weight:700;font-size:17px;color:var(--green-deep);}
+  .brand .dot{color:var(--green-bright);}
+  .badge{
+    margin-left:auto;
+    font-size:10px;
+    font-weight:600;
+    color:var(--green-mid);
+    background:var(--green-pale);
+    border:1px solid var(--green-line);
+    padding:4px 9px;
+    border-radius:20px;
+    letter-spacing:.02em;
+  }
+
+  .intro{padding:6px 20px 18px;}
+  .intro h1{
+    font-family:'Poppins',sans-serif;
+    font-size:21px;
+    font-weight:700;
+    color:var(--green-deep);
+    margin:4px 0 6px;
+    line-height:1.3;
+  }
+  .intro p{
+    font-size:13px;
+    color:var(--ink-soft);
+    line-height:1.55;
+    margin:0;
+  }
+  .intro p b{color:var(--green-mid);}
+
+  .stepbar{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:0 20px 10px;
+  }
+  .stepbar .steplabel{
+    font-size:10.5px;
+    letter-spacing:.08em;
+    font-weight:700;
+    color:var(--muted);
+    text-transform:uppercase;
+  }
+  .dots{display:flex;gap:5px;}
+  .dots i{width:20px;height:5px;border-radius:3px;background:#DCEBE0;display:block;}
+  .dots i.on{background:var(--green-deep);}
+
+  .card{
+    background:var(--card);
+    border-radius:var(--radius);
+    padding:18px 18px 16px;
+    margin:0 16px 16px;
+    box-shadow:0 2px 14px rgba(23,63,44,0.06);
+    border:1px solid #EAF2EB;
+  }
+  .cardhead{font-family:'Poppins',sans-serif;font-weight:700;font-size:15.5px;color:var(--green-deep);margin:0 0 12px;}
+
+  .bubble-row{display:flex;align-items:flex-start;gap:10px;margin-bottom:16px;}
+  .bubble-avatar{
+    width:34px;height:34px;border-radius:50%;
+    background:var(--green-pale);border:1.5px solid var(--green-line);
+    display:flex;align-items:center;justify-content:center;flex-shrink:0;
+    color:var(--green-deep);font-weight:800;font-size:13px;
+  }
+  .bubble{
+    background:var(--green-pale);
+    border:1px solid var(--green-line);
+    border-radius:14px;
+    padding:11px 14px;
+    flex:1;
+  }
+  .bubble .who{
+    font-size:9.5px;font-weight:700;letter-spacing:.08em;
+    color:var(--green-mid);text-transform:uppercase;margin-bottom:3px;
+  }
+  .bubble .say{font-size:13.5px;font-weight:600;color:var(--green-deep);line-height:1.4;}
+
+  .field{margin-bottom:14px;}
+  .field-label{
+    font-size:10.5px;font-weight:700;letter-spacing:.06em;
+    text-transform:uppercase;color:var(--muted);margin-bottom:7px;display:flex;justify-content:space-between;
+  }
+  .field-label .val{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:13px;font-weight:700;color:var(--green-deep);
+    text-transform:none;letter-spacing:0;
+  }
+  input[type=range]{
+    width:100%;-webkit-appearance:none;height:5px;border-radius:3px;
+    background:linear-gradient(to right, var(--green-mid) 0%, var(--green-mid) var(--fill,50%), #E1EEE3 var(--fill,50%), #E1EEE3 100%);
+  }
+  input[type=range]::-webkit-slider-thumb{
+    -webkit-appearance:none;width:20px;height:20px;border-radius:50%;
+    background:#fff;border:4px solid var(--green-mid);cursor:pointer;
+    box-shadow:0 1px 4px rgba(0,0,0,0.2);
+  }
+  input[type=range]::-moz-range-thumb{
+    width:20px;height:20px;border-radius:50%;background:#fff;
+    border:4px solid var(--green-mid);cursor:pointer;
+  }
+
+  .chiprow{display:flex;gap:6px;margin-top:9px;flex-wrap:wrap;}
+  .chip{
+    font-size:11.5px;font-weight:600;
+    padding:6px 12px;border-radius:20px;
+    border:1px solid var(--green-line);
+    background:#fff;color:var(--green-mid);
+    cursor:pointer;
+  }
+  .chip.active{background:var(--green-deep);color:#fff;border-color:var(--green-deep);}
+
+  .riskgrid{display:flex;gap:8px;margin-top:4px;}
+  .riskbtn{
+    flex:1;padding:11px 4px;text-align:center;font-size:12px;font-weight:600;
+    border-radius:12px;border:1.5px solid var(--green-line);
+    background:#fff;color:var(--ink-soft);cursor:pointer;
+  }
+  .riskbtn.active{background:var(--green-deep);color:#fff;border-color:var(--green-deep);}
+
+  .assum-note{
+    font-size:11px;color:var(--muted);line-height:1.55;
+    border-top:1px dashed var(--green-line);padding-top:10px;margin-top:4px;
+  }
+  .assum-note b{color:var(--green-mid);}
+
+  /* live breakdown bar, matching the screenshot's Monthly Cash Breakdown */
+  .breakdown{
+    background:var(--green-pale);
+    border-radius:14px;
+    padding:14px 14px 12px;
+    margin-top:4px;
+  }
+  .breakdown .bhead{
+    display:flex;justify-content:space-between;font-size:11px;font-weight:700;
+    color:var(--green-deep);margin-bottom:8px;text-transform:uppercase;letter-spacing:.04em;
+  }
+  .bar{height:9px;border-radius:5px;background:#DCEBE0;overflow:hidden;display:flex;margin-bottom:8px;}
+  .bar .seg{height:100%;}
+  .blegend{display:flex;gap:14px;font-size:11px;color:var(--ink-soft);flex-wrap:wrap;}
+  .blegend .dotc{width:8px;height:8px;border-radius:50%;display:inline-block;margin-right:4px;}
+
+  /* HIDDEN LOSS RESULT CARD — pink, matches screenshot */
+  .loss-card{
+    background:var(--pink-bg);
+    border:1px solid var(--pink-line);
+    border-radius:20px;
+    padding:18px 18px 16px;
+    margin:6px 16px 16px;
+  }
+  .loss-top{display:flex;align-items:center;gap:12px;margin-bottom:14px;}
+  .loss-icon{
+    width:44px;height:44px;border-radius:14px;
+    background:#fff;display:flex;align-items:center;justify-content:center;font-size:20px;
+    flex-shrink:0;
+  }
+  .loss-pill{
+    font-size:9.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
+    color:var(--loss);background:#fff;border:1px solid var(--pink-line);
+    padding:3px 9px;border-radius:20px;display:inline-block;margin-bottom:5px;
+  }
+  .loss-title{font-family:'Poppins',sans-serif;font-weight:700;font-size:16.5px;color:var(--ink);}
+
+  .loss-stats{display:flex;background:#fff;border-radius:14px;padding:12px 0;margin-bottom:14px;}
+  .loss-stats .stat{flex:1;text-align:center;border-right:1px solid #F1E2E0;}
+  .loss-stats .stat:last-child{border-right:none;}
+  .loss-stats .stat .slabel{font-size:9.5px;font-weight:700;color:var(--muted);letter-spacing:.05em;text-transform:uppercase;margin-bottom:4px;}
+  .loss-stats .stat .sval{font-family:'IBM Plex Mono',monospace;font-weight:700;font-size:17px;}
+  .loss-stats .stat.daily .sval{color:var(--loss);}
+  .loss-stats .stat.fiveyr .sval{color:var(--gain);}
+
+  .lineitem{
+    background:#fff;border-radius:12px;margin-bottom:8px;overflow:hidden;
+    border:1px solid #F1E2E0;
+  }
+  .li-row{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:11px 13px;cursor:pointer;-webkit-tap-highlight-color:transparent;
+  }
+  .li-left{display:flex;align-items:center;gap:9px;}
+  .li-num{
+    width:20px;height:20px;border-radius:50%;background:var(--pink-bg);color:var(--loss);
+    font-size:10.5px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;
+  }
+  .li-label{font-size:12.5px;font-weight:600;color:var(--ink);}
+  .li-right{display:flex;align-items:center;gap:6px;}
+  .li-amt{font-family:'IBM Plex Mono',monospace;font-size:12.5px;font-weight:700;color:var(--loss);}
+  .li-chev{font-size:10px;color:var(--muted);transition:transform .2s;}
+  .li-row.open .li-chev{transform:rotate(90deg);}
+  .li-math{
+    display:none;font-family:'IBM Plex Mono',monospace;font-size:10.8px;line-height:1.8;
+    color:var(--ink-soft);background:#FBF6F0;padding:11px 13px;border-top:1px dashed #F1E2E0;
+  }
+  .li-math.show{display:block;}
+  .li-math .eq{color:var(--ink);font-weight:600;}
+  .li-math .src{display:block;margin-top:5px;color:var(--green-mid);font-size:10px;}
+
+  .info-strip{
+    display:flex;align-items:flex-start;gap:9px;
+    background:#fff;border-radius:12px;padding:11px 13px;margin-top:4px;
+    border:1px solid #F1E2E0;
+  }
+  .info-strip .ic{
+    width:18px;height:18px;border-radius:50%;background:var(--loss);color:#fff;
+    font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;
+  }
+  .info-strip p{font-size:11px;color:var(--ink-soft);line-height:1.5;margin:0;}
+  .info-strip b{color:var(--ink);}
+
+  .cta{
+    display:flex;align-items:center;justify-content:center;gap:8px;
+    background:linear-gradient(90deg,var(--green-deep),var(--green-bright));
+    color:#fff;font-weight:700;font-size:14.5px;
+    padding:15px;border-radius:30px;margin:4px 16px 6px;
+    box-shadow:0 8px 20px -6px rgba(23,63,44,0.45);
+    border:none;width:calc(100% - 32px);cursor:pointer;
+    font-family:'Poppins',sans-serif;
+  }
+  .footnote{
+    text-align:center;font-size:11px;color:var(--muted);
+    padding:6px 30px 0;line-height:1.6;
+  }
+  .footnote b{color:var(--green-mid);}
+
+  .navbar{
+    position:sticky;bottom:0;background:var(--bg);
+    display:flex;justify-content:center;gap:40px;padding:14px 0;
+    border-top:1px solid #E4EFE6;margin-top:6px;
+  }
+  .navbar span{width:22px;height:3px;border-radius:2px;background:#B9CFBF;display:block;}
+</style>
+</head>
+<body>
+<div class="phone">
+
+  <div class="topbar">
+    <div class="logo">S</div>
+    <div class="brand">SmartMoney<span class="dot">.</span></div>
+    <div class="badge">TRANSPARENT MODE</div>
+  </div>
+
+  <div class="intro">
+    <h1>Let's find your hidden loss — and show you exactly how we found it.</h1>
+    <p>Same three checks as before. This time every number on your report is <b>tappable</b>, so you see the formula before you trust the total.</p>
+  </div>
+
+  <div class="stepbar">
+    <div class="steplabel">Step 1 of 3 · Cash flow</div>
+    <div class="dots"><i class="on"></i><i class="on"></i><i></i></div>
+  </div>
+
+  <div class="card">
+    <div class="bubble-row">
+      <div class="bubble-avatar">S</div>
+      <div class="bubble">
+        <div class="who">MyGuide</div>
+        <div class="say">Let's check your monthly cash flow — income, expenses, and what you're already investing.</div>
+      </div>
+    </div>
+
+    <div class="field">
+      <div class="field-label">Monthly income <span class="val" id="v-income">₹1,00,000</span></div>
+      <input type="range" id="income" min="0" max="500000" step="5000" value="100000">
+      <div class="chiprow">
+        <div class="chip" data-target="income" data-add="50000">+50k</div>
+        <div class="chip" data-target="income" data-add="100000">+1L</div>
+        <div class="chip" data-target="income" data-add="500000">+5L</div>
+      </div>
+    </div>
+
+    <div class="field">
+      <div class="field-label">Monthly expenses <span class="val" id="v-expenses">₹50,000</span></div>
+      <input type="range" id="expenses" min="0" max="300000" step="2500" value="50000">
+      <div class="chiprow">
+        <div class="chip" data-target="expenses" data-add="20000">+20k</div>
+        <div class="chip" data-target="expenses" data-add="50000">+50k</div>
+        <div class="chip" data-target="expenses" data-add="100000">+1L</div>
+      </div>
+    </div>
+
+    <div class="field" style="margin-bottom:2px;">
+      <div class="field-label">Investing / month <span class="val" id="v-invest">₹30,000</span></div>
+      <input type="range" id="invest" min="0" max="200000" step="1000" value="30000">
+      <div class="chiprow">
+        <div class="chip" data-target="invest" data-add="5000">+5k</div>
+        <div class="chip" data-target="invest" data-add="10000">+10k</div>
+        <div class="chip" data-target="invest" data-add="25000">+25k</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="stepbar">
+    <div class="steplabel">Step 2 of 3 · Savings &amp; assets</div>
+    <div class="dots"><i class="on"></i><i class="on"></i><i class="on"></i></div>
+  </div>
+
+  <div class="card">
+    <div class="bubble-row">
+      <div class="bubble-avatar">S</div>
+      <div class="bubble">
+        <div class="who">MyGuide</div>
+        <div class="say">Now, what's sitting in savings and fixed deposits — and how much risk are you comfortable taking?</div>
+      </div>
+    </div>
+
+    <div class="field">
+      <div class="field-label">Savings account balance <span class="val" id="v-savings">₹5,00,000</span></div>
+      <input type="range" id="savings" min="0" max="3000000" step="10000" value="500000">
+      <div class="chiprow">
+        <div class="chip" data-target="savings" data-add="50000">+50k</div>
+        <div class="chip" data-target="savings" data-add="100000">+1L</div>
+        <div class="chip" data-target="savings" data-add="500000">+5L</div>
+      </div>
+    </div>
+
+    <div class="field">
+      <div class="field-label">Fixed deposits (FD) <span class="val" id="v-fd">₹2,00,000</span></div>
+      <input type="range" id="fd" min="0" max="3000000" step="10000" value="200000">
+      <div class="chiprow">
+        <div class="chip" data-target="fd" data-add="50000">+50k</div>
+        <div class="chip" data-target="fd" data-add="100000">+1L</div>
+        <div class="chip" data-target="fd" data-add="500000">+5L</div>
+      </div>
+    </div>
+
+    <div class="field" style="margin-bottom:4px;">
+      <div class="field-label" style="margin-bottom:9px;">Risk appetite</div>
+      <div class="riskgrid" id="risk-row">
+        <div class="riskbtn" data-risk="conservative">Conservative</div>
+        <div class="riskbtn" data-risk="balanced">Balanced</div>
+        <div class="riskbtn active" data-risk="aggressive">Aggressive</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="stepbar">
+    <div class="steplabel">Step 3 of 3 · The assumptions</div>
+    <div class="dots"><i class="on"></i><i class="on"></i><i class="on"></i></div>
+  </div>
+
+  <div class="card">
+    <div class="bubble-row">
+      <div class="bubble-avatar">S</div>
+      <div class="bubble">
+        <div class="who">MyGuide</div>
+        <div class="say">Before we scare you with a number — here's exactly what we're assuming. Drag if you disagree.</div>
+      </div>
+    </div>
+
+    <div class="field">
+      <div class="field-label">Emergency buffer <span class="val" id="v-buffer">6 months</span></div>
+      <input type="range" id="buffer" min="3" max="12" step="1" value="6">
+    </div>
+    <div class="field" style="margin-bottom:4px;">
+      <div class="field-label">Benchmark growth rate (your risk profile) <span class="val" id="v-benchmark">13.0%/yr</span></div>
+      <input type="range" id="benchmark" min="6" max="16" step="0.5" value="13">
+    </div>
+    <div class="assum-note">Current parking rate assumed: <b>savings 3.0%</b>, <b>FD 6.5%</b>, <b>liquid fund 6.5%</b>. Benchmark defaults by risk profile — conservative ≈7%, balanced ≈10%, aggressive ≈13% — all category averages, not guaranteed returns.</div>
+
+    <div class="breakdown" style="margin-top:14px;">
+      <div class="bhead"><span>Monthly cash breakdown</span><span id="bk-total">₹1,00,000</span></div>
+      <div class="bar">
+        <div class="seg" id="seg-exp" style="background:#E7A6A6;"></div>
+        <div class="seg" id="seg-inv" style="background:var(--green-mid);"></div>
+        <div class="seg" id="seg-sur" style="background:#DCEBE0;"></div>
+      </div>
+      <div class="blegend">
+        <span><i class="dotc" style="background:#E7A6A6;"></i>Exp: <b id="lg-exp">₹50,000</b></span>
+        <span><i class="dotc" style="background:var(--green-mid);"></i>Invest: <b id="lg-inv">₹30,000</b></span>
+        <span><i class="dotc" style="background:#8FAE9B;"></i>Surplus: <b id="lg-sur">₹20,000</b></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- RESULT -->
+  <div class="loss-card">
+    <div class="loss-top">
+      <div class="loss-icon">👛</div>
+      <div>
+        <div class="loss-pill">Hidden Loss Detected</div>
+        <div class="loss-title">Idle Savings</div>
+      </div>
+    </div>
+
+    <div class="loss-stats">
+      <div class="stat daily"><div class="slabel">Daily loss</div><div class="sval" id="total-daily">₹0/day</div></div>
+      <div class="stat fiveyr"><div class="slabel">5Y potential gain</div><div class="sval" id="total-5y">₹0</div></div>
+    </div>
+
+    <div class="lineitem" id="item-buffer">
+      <div class="li-row">
+        <div class="li-left"><div class="li-num">1</div><div class="li-label">Idle emergency fund</div></div>
+        <div class="li-right"><div class="li-amt" id="amt-buffer">₹0/yr</div><div class="li-chev">▸</div></div>
+      </div>
+      <div class="li-math" id="math-buffer"></div>
+    </div>
+
+    <div class="lineitem" id="item-excess">
+      <div class="li-row">
+        <div class="li-left"><div class="li-num">2</div><div class="li-label">Excess in savings/FD</div></div>
+        <div class="li-right"><div class="li-amt" id="amt-excess">₹0/yr</div><div class="li-chev">▸</div></div>
+      </div>
+      <div class="li-math" id="math-excess"></div>
+    </div>
+
+    <div class="lineitem" id="item-surplus">
+      <div class="li-row">
+        <div class="li-left"><div class="li-num">3</div><div class="li-label">Excess monthly savings not investing</div></div>
+        <div class="li-right"><div class="li-amt" id="amt-surplus">₹0/yr</div><div class="li-chev">▸</div></div>
+      </div>
+      <div class="li-math" id="math-surplus"></div>
+    </div>
+
+    <div class="info-strip">
+      <div class="ic">i</div>
+      <p>Every figure above is derived live from your inputs and the assumptions in Step 3 — <b>tap any row</b> to see the exact formula. Nothing is precomputed or hidden.</p>
+    </div>
+  </div>
+
+  <button class="cta">See my full action plan →</button>
+  <div class="footnote">Estimate only, based on editable category-average returns. Not personalized investment advice. <b>SmartMoney</b> — transparent by default.</div>
+
+  <div class="navbar"><span></span><span></span><span></span></div>
+</div>
+
+<script>
+const fmt = n => '₹' + Math.round(n).toLocaleString('en-IN');
+const fmt1 = n => n.toFixed(1);
+
+const els = {
+  income: document.getElementById('income'),
+  expenses: document.getElementById('expenses'),
+  invest: document.getElementById('invest'),
+  savings: document.getElementById('savings'),
+  fd: document.getElementById('fd'),
+  buffer: document.getElementById('buffer'),
+  benchmark: document.getElementById('benchmark'),
+};
+
+const riskBenchmarks = { conservative: 7, balanced: 10, aggressive: 13 };
+let currentRisk = 'aggressive';
+
+function setFill(input){
+  const min = +input.min, max = +input.max, val = +input.value;
+  const pct = ((val - min) / (max - min)) * 100;
+  input.style.setProperty('--fill', pct + '%');
+}
+
+function updateLabels(){
+  document.getElementById('v-income').textContent = fmt(+els.income.value);
+  document.getElementById('v-expenses').textContent = fmt(+els.expenses.value);
+  document.getElementById('v-invest').textContent = fmt(+els.invest.value);
+  document.getElementById('v-savings').textContent = fmt(+els.savings.value);
+  document.getElementById('v-fd').textContent = fmt(+els.fd.value);
+  document.getElementById('v-buffer').textContent = els.buffer.value + ' months';
+  document.getElementById('v-benchmark').textContent = fmt1(+els.benchmark.value) + '%/yr';
+}
+
+function calc(){
+  const income = +els.income.value;
+  const expenses = +els.expenses.value;
+  const invest = +els.invest.value;
+  const savings = +els.savings.value;
+  const fd = +els.fd.value;
+  const bufferMonths = +els.buffer.value;
+  const benchmark = +els.benchmark.value / 100;
+
+  const savingsRate = 0.03;
+  const fdRate = 0.065;
+  const liquidRate = 0.065;
+  const totalParked = savings + fd;
+  const blendedRate = totalParked > 0 ? (savings*savingsRate + fd*fdRate)/totalParked : savingsRate;
+
+  const bufferAmt = Math.min(expenses * bufferMonths, totalParked);
+  const bufferLoss = bufferAmt * Math.max(0, liquidRate - savingsRate);
+
+  const excessAmt = Math.max(0, totalParked - bufferAmt);
+  const excessLoss = excessAmt * Math.max(0, benchmark - blendedRate);
+
+  const monthlySurplus = Math.max(0, income - expenses - invest);
+  const annualSurplus = monthlySurplus * 12;
+  const surplusLoss = annualSurplus * Math.max(0, benchmark - savingsRate);
+
+  const totalAnnual = bufferLoss + excessLoss + surplusLoss;
+  const totalDaily = totalAnnual / 365;
+
+  const fv5_lump = (bufferAmt + excessAmt) * (Math.pow(1+benchmark,5) - Math.pow(1+blendedRate,5));
+  const fv5_annuity = annualSurplus * ((Math.pow(1+benchmark,5)-1)/benchmark - (Math.pow(1+savingsRate,5)-1)/savingsRate);
+  const total5y = Math.max(0, fv5_lump) + Math.max(0, fv5_annuity);
+
+  document.getElementById('amt-buffer').textContent = fmt(bufferLoss) + '/yr';
+  document.getElementById('math-buffer').innerHTML =
+    `<span class="eq">Buffer needed</span> = ${bufferMonths} mo × ${fmt(expenses)} = ${fmt(bufferAmt)}<br>`+
+    `<span class="eq">Rate gap</span> = liquid fund (6.5%) − savings a/c (3.0%) = ${(liquidRate-savingsRate)*100}%<br>`+
+    `<span class="eq">Loss</span> = ${fmt(bufferAmt)} × ${(liquidRate-savingsRate)*100}% = <b>${fmt(bufferLoss)}/yr</b>`+
+    `<span class="src">Buffer months and rates are editable in Step 3.</span>`;
+
+  document.getElementById('amt-excess').textContent = fmt(excessLoss) + '/yr';
+  document.getElementById('math-excess').innerHTML =
+    `<span class="eq">Excess parked</span> = (savings ${fmt(savings)} + FD ${fmt(fd)}) − buffer ${fmt(bufferAmt)} = ${fmt(excessAmt)}<br>`+
+    `<span class="eq">Blended current rate</span> = ${(blendedRate*100).toFixed(2)}% (weighted by savings/FD split)<br>`+
+    `<span class="eq">Benchmark (${currentRisk})</span> = ${fmt1(benchmark*100)}%<br>`+
+    `<span class="eq">Loss</span> = ${fmt(excessAmt)} × ${(Math.max(0,benchmark-blendedRate)*100).toFixed(2)}% = <b>${fmt(excessLoss)}/yr</b>`+
+    `<span class="src">Benchmark = category avg for your risk profile — drag slider in Step 3 to test other assumptions.</span>`;
+
+  document.getElementById('amt-surplus').textContent = fmt(surplusLoss) + '/yr';
+  document.getElementById('math-surplus').innerHTML =
+    `<span class="eq">Monthly surplus</span> = income ${fmt(income)} − expenses ${fmt(expenses)} − investing ${fmt(invest)} = ${fmt(monthlySurplus)}<br>`+
+    `<span class="eq">Annualized</span> = ${fmt(monthlySurplus)} × 12 = ${fmt(annualSurplus)}<br>`+
+    `<span class="eq">Loss</span> = ${fmt(annualSurplus)} × (${fmt1(benchmark*100)}% − 3.0%) = <b>${fmt(surplusLoss)}/yr</b>`+
+    `<span class="src">Assumes idle surplus sits at savings-account rate (3%) if left uninvested.</span>`;
+
+  document.getElementById('total-daily').textContent = fmt(totalDaily) + '/day';
+  document.getElementById('total-5y').textContent = fmt(total5y);
+
+  // breakdown bar
+  const total = income > 0 ? income : 1;
+  const expPct = Math.min(100, (expenses/total)*100);
+  const invPct = Math.min(100-expPct, (invest/total)*100);
+  const surPct = Math.max(0, 100-expPct-invPct);
+  document.getElementById('seg-exp').style.width = expPct+'%';
+  document.getElementById('seg-inv').style.width = invPct+'%';
+  document.getElementById('seg-sur').style.width = surPct+'%';
+  document.getElementById('bk-total').textContent = fmt(income);
+  document.getElementById('lg-exp').textContent = fmt(expenses);
+  document.getElementById('lg-inv').textContent = fmt(invest);
+  document.getElementById('lg-sur').textContent = fmt(monthlySurplus);
+}
+
+function bindSlider(input){
+  input.addEventListener('input', () => { setFill(input); updateLabels(); calc(); });
+  setFill(input);
+}
+Object.values(els).forEach(bindSlider);
+
+document.querySelectorAll('.chip[data-target]').forEach(chip=>{
+  chip.addEventListener('click', ()=>{
+    const target = els[chip.dataset.target];
+    const add = +chip.dataset.add;
+    target.value = Math.min(+target.max, +target.value + add);
+    setFill(target); updateLabels(); calc();
+  });
+});
+
+document.querySelectorAll('.riskbtn').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    document.querySelectorAll('.riskbtn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    currentRisk = btn.dataset.risk;
+    els.benchmark.value = riskBenchmarks[currentRisk];
+    setFill(els.benchmark);
+    updateLabels();
+    calc();
+  });
+});
+
+document.querySelectorAll('.li-row').forEach(row=>{
+  row.addEventListener('click', ()=>{
+    row.classList.toggle('open');
+    row.nextElementSibling.classList.toggle('show');
+  });
+});
+
+updateLabels();
+calc();
+</script>
+</body>
+</html>

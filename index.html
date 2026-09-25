@@ -213,10 +213,14 @@ section:last-of-type{border-bottom:none;}
 .client-block h4{font-family:var(--body);font-weight:600;font-size:15.5px;color:var(--text);margin-bottom:2px;}
 
 /* PROJECT CARD */
+.project-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;align-items:stretch;}
+@media (max-width:820px){.project-grid{grid-template-columns:1fr;}}
 .card{
   background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:28px;
   transition:transform .25s ease, border-color .25s ease, box-shadow .25s ease;
+  display:flex;flex-direction:column;
 }
+.card .demo-link{margin-top:auto;align-self:flex-start;}
 .card:hover{transform:translateY(-4px);border-color:rgba(169,119,46,.4);box-shadow:0 20px 40px -28px rgba(30,36,48,.2);}
 .card .badge{
   font-family:var(--mono);font-size:10.5px;color:var(--teal);border:1px solid rgba(46,131,104,.4);
@@ -500,13 +504,22 @@ footer p{color:var(--muted);font-size:13px;margin-top:16px;}
 <section id="projects">
   <div class="wrap">
     <div class="sec-head"><span class="sec-num">03</span><h2>Product build</h2></div>
-    <p class="sec-sub">One product built outside consulting work — for a national AI hackathon at ISB.</p>
-    <div class="card reveal" style="max-width:660px;">
-      <span class="badge">Semifinalist · ISB National AI Hackathon</span>
-      <h3>Kirana Lens</h3>
-      <p>An AI-powered inventory management app built for small kirana store owners who've never used software before: camera-based shelf scanning to count stock without a barcode gun, invoice OCR to digitize supplier bills in seconds, and a sales insights dashboard that turns raw stock data into decisions a shopkeeper can actually act on.</p>
-      <div class="tags"><span class="tag">Computer Vision</span><span class="tag">Invoice OCR</span><span class="tag">Retail Analytics</span></div>
-      <a class="demo-link" href="https://drive.google.com/file/d/1xBO_s0RCS9Sxvg8SDVHC9ZZIEKiIObEI/view?usp=sharing" target="_blank">🎥 Watch the 9-minute product demo →</a>
+    <p class="sec-sub">Product work built outside consulting hours — a hackathon build and a fintech teardown.</p>
+    <div class="project-grid">
+      <div class="card reveal">
+        <span class="badge">Semifinalist · ISB National AI Hackathon</span>
+        <h3>Kirana Lens</h3>
+        <p>An AI-powered inventory management app built for small kirana store owners who've never used software before: camera-based shelf scanning to count stock without a barcode gun, invoice OCR to digitize supplier bills in seconds, and a sales insights dashboard that turns raw stock data into decisions a shopkeeper can actually act on.</p>
+        <div class="tags"><span class="tag">Computer Vision</span><span class="tag">Invoice OCR</span><span class="tag">Retail Analytics</span></div>
+        <a class="demo-link" href="https://drive.google.com/file/d/1xBO_s0RCS9Sxvg8SDVHC9ZZIEKiIObEI/view?usp=sharing" target="_blank">🎥 Watch the 9-minute product demo →</a>
+      </div>
+      <div class="card reveal">
+        <span class="badge">Unsolicited teardown · SmartMoney</span>
+        <h3>Transparent Hidden-Loss Calculator</h3>
+        <p>A trust-first redesign of a fintech onboarding flow that surfaces a scary "hidden loss" number without showing its math. This prototype keeps the same conversational UI but makes every figure tappable — revealing the live formula, with editable assumptions instead of a black-box calculation.</p>
+        <div class="tags"><span class="tag">Fintech UX</span><span class="tag">Product Teardown</span><span class="tag">Trust &amp; Transparency</span></div>
+        <a class="demo-link" href="prototypes/smartmoney.html" target="_blank">🔗 Try the interactive prototype →</a>
+      </div>
     </div>
   </div>
 </section>
