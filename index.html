@@ -235,6 +235,8 @@ section:last-of-type{border-bottom:none;}
   padding:10px 16px;border-radius:20px;border:1px solid var(--primary);color:var(--primary);
 }
 .demo-link:hover{background:var(--primary-soft);text-decoration:none;}
+.card .card-links{margin-top:auto;align-self:flex-start;display:flex;gap:10px;flex-wrap:wrap;}
+.card .card-links .demo-link{margin-top:0;}
 
 /* BEYOND & ACHIEVEMENTS */
 .beyond-sub-label{font-family:var(--mono);font-size:11.5px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;margin-bottom:16px;}
@@ -504,7 +506,7 @@ footer p{color:var(--muted);font-size:13px;margin-top:16px;}
 <section id="projects">
   <div class="wrap">
     <div class="sec-head"><span class="sec-num">03</span><h2>Product build</h2></div>
-    <p class="sec-sub">Product work built outside consulting hours — a hackathon build and a fintech teardown.</p>
+    <p class="sec-sub">Product work built outside consulting hours — a hackathon build, an ISB capstone MVP, a fintech teardown, and a couple of personal tools.</p>
     <div class="project-grid">
       <div class="card reveal">
         <span class="badge">Semifinalist · ISB National AI Hackathon</span>
@@ -514,11 +516,35 @@ footer p{color:var(--muted);font-size:13px;margin-top:16px;}
         <a class="demo-link" href="https://drive.google.com/file/d/1xBO_s0RCS9Sxvg8SDVHC9ZZIEKiIObEI/view?usp=sharing" target="_blank">🎥 Watch the 9-minute product demo →</a>
       </div>
       <div class="card reveal">
+        <span class="badge">MVP · ISB Software Product Management capstone</span>
+        <h3>DelX</h3>
+        <p>A logistics marketplace matching urgent, small deliveries — a passport, keys, a charger — with verified travellers already making that trip. Built as a Wizard-of-Oz MVP: the requester and traveller apps feel fully automated, while an Ops console behind the scenes handles matching, traveller verification, and payouts, with OTP-gated handoffs and payment held until delivery.</p>
+        <div class="tags"><span class="tag">Product Management</span><span class="tag">React &amp; Supabase</span><span class="tag">Marketplace Trust</span></div>
+        <div class="card-links">
+          <a class="demo-link" href="https://delx-ten.vercel.app" target="_blank">🚀 View the live app →</a>
+          <a class="demo-link" href="https://github.com/akshaypratap1701-sys/delx" target="_blank">🔗 View the code →</a>
+        </div>
+      </div>
+      <div class="card reveal">
         <span class="badge">Unsolicited teardown · SmartMoney</span>
         <h3>Transparent Hidden-Loss Calculator</h3>
         <p>A trust-first redesign of a fintech onboarding flow that surfaces a scary "hidden loss" number without showing its math. This prototype keeps the same conversational UI but makes every figure tappable — revealing the live formula, with editable assumptions instead of a black-box calculation.</p>
         <div class="tags"><span class="tag">Fintech UX</span><span class="tag">Product Teardown</span><span class="tag">Trust &amp; Transparency</span></div>
         <a class="demo-link" href="prototypes/smartmoney.html" target="_blank">🔗 Try the interactive prototype →</a>
+      </div>
+      <div class="card reveal">
+        <span class="badge">Personal build · Job search tooling</span>
+        <h3>Aapurti</h3>
+        <p>A job-matching tool that pulls live supply-chain openings straight from employers' own Greenhouse, Lever, Ashby, and SmartRecruiters career boards, matches them against a signed-in user's profile, and drafts the right LinkedIn people search and referral message for each role — built to shorten the gap between finding a role and finding someone to vouch for you.</p>
+        <div class="tags"><span class="tag">Job Aggregation</span><span class="tag">Supabase Auth</span><span class="tag">Node &amp; Vercel</span></div>
+        <a class="demo-link" href="https://github.com/akshaypratap1701-sys/Aapurti" target="_blank">🔗 View the code →</a>
+      </div>
+      <div class="card reveal">
+        <span class="badge">Personal build · Home computer vision</span>
+        <h3>Tapo AI Agent</h3>
+        <p>A local computer-vision prototype that turns a TP-Link Tapo C200 home camera into an occupancy sensor — pulling its RTSP stream, running YOLO11n on-device to detect people in real time, and logging room entry/exit events with timestamps and occupancy duration. Runs entirely locally; the roadmap adds a chatbot over that event history.</p>
+        <div class="tags"><span class="tag">Computer Vision</span><span class="tag">YOLO11n</span><span class="tag">Python</span></div>
+        <a class="demo-link" href="https://github.com/akshaypratap1701-sys/tapo-ai-agent" target="_blank">🔗 View the code →</a>
       </div>
     </div>
   </div>
